@@ -157,6 +157,8 @@ final class SocksProxyProtocolHandler implements IOEventHandler {
                         setBufferLimit(this.username.length() + this.password.length() + 3);
                         this.buffer.put(USERNAME_PASSWORD_VERSION);
                         this.buffer.put((byte) this.username.length());
+                        // These will remain with ISO-8859-1 since the RFC does not mention any string
+                        // to octet encoding. So neither one is wrong or right.
                         this.buffer.put(this.username.getBytes(StandardCharsets.ISO_8859_1));
                         this.buffer.put((byte) this.password.length());
                         this.buffer.put(this.password.getBytes(StandardCharsets.ISO_8859_1));
