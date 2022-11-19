@@ -33,6 +33,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.apache.hc.core5.http.WritableByteChannelMock;
 import org.apache.hc.core5.http.impl.BasicHttpTransportMetrics;
@@ -52,7 +53,7 @@ public class TestLengthDelimitedEncoder {
     private File tmpfile;
 
     protected File createTempFile() throws IOException {
-        this.tmpfile = File.createTempFile("testFile", ".txt");
+        this.tmpfile = Files.createTempFile("testFile", ".txt").toFile();
         return this.tmpfile;
     }
 

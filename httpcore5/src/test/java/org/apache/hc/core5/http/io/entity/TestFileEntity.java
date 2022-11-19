@@ -31,6 +31,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 
 import org.apache.hc.core5.http.ContentType;
 import org.junit.jupiter.api.Assertions;
@@ -44,7 +45,7 @@ public class TestFileEntity {
 
     @Test
     public void testBasics() throws Exception {
-        final File tmpfile = File.createTempFile("testfile", ".txt");
+        final File tmpfile = Files.createTempFile("testfile", ".txt").toFile();
         tmpfile.deleteOnExit();
         try (final FileEntity httpentity = new FileEntity(tmpfile, ContentType.TEXT_PLAIN)) {
 
@@ -65,7 +66,7 @@ public class TestFileEntity {
 
     @Test
     public void testWriteTo() throws Exception {
-        final File tmpfile = File.createTempFile("testfile", ".txt");
+        final File tmpfile = Files.createTempFile("testfile", ".txt").toFile();
         tmpfile.deleteOnExit();
 
         final FileOutputStream outStream = new FileOutputStream(tmpfile);

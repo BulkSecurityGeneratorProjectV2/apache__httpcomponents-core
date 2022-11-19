@@ -32,6 +32,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.WritableByteChannelMock;
@@ -49,7 +50,7 @@ public class TestFileAsyncEntityProducer {
 
     @BeforeEach
     public void setup() throws Exception {
-        tempFile = File.createTempFile("testing", ".txt");
+        tempFile = Files.createTempFile("testing", ".txt").toFile();
         try (final Writer writer = new OutputStreamWriter(new FileOutputStream(tempFile), StandardCharsets.US_ASCII)) {
             writer.append("abcdef");
             writer.flush();

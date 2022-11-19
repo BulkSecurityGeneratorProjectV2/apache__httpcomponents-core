@@ -34,6 +34,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.apache.hc.core5.http.ReadableByteChannelMock;
 import org.apache.hc.core5.http.impl.BasicHttpTransportMetrics;
@@ -50,7 +51,7 @@ public class TestIdentityDecoder {
     private File tmpfile;
 
     protected File createTempFile() throws IOException {
-        this.tmpfile = File.createTempFile("testFile", ".txt");
+        this.tmpfile = Files.createTempFile("testFile", ".txt").toFile();
         return this.tmpfile;
     }
 
